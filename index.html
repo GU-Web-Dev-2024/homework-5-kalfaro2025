@@ -146,17 +146,32 @@
         function generateRandomNumber(){
             randomNumber = Math.floor(Math.random() * newArtworks.length); 
         }
-        function addArtwork() {
-            generateRandomNumber();
-            const artPanel = document.createElement("div");
-            artPanel.className = "art-panel";
-            artPanel.innerHTML = `<img src="${newArtworks[randomNumber].img}" alt="${newArtworks[randomNumber].title}">
-            <p>${newArtworks[randomNumber].title} by ${newArtworks[randomNumber].artist}</p>`;
-
-            document.getElementById("art-grid").appendChild(artPanel);
+        function addRandomArtwork() {
+            const randomIndex = getRandomIndex();
+            const newArtworkElement = createArtworkElement(newArtworks[randomIndex]);
+            document.querySelector(".art-grid").appendChild(newArtworkElement);
         }
 
-        document.getElementById("add-art-button").addEventListener("click", addArtwork);
+        function getRandomIndex() {
+            return Math.floor(Math.random() * newArtworks.length);
+        }
+
+        function createArtworkElement(artwork) {
+            const artworkElement = document.createElement("div");
+            artworkElement.className = "art-panel";
+
+            const imgElement = document.createElement("img");
+            imgElement.src = artwork.img;
+            artworkElement.appendChild(imgElement);
+
+            const paragraphElement = document.createElement("p");
+            paragraphElement.textContent = `${artwork.title} by ${artwork.artist}`;
+            artworkElement.appendChild(paragraphElement);
+
+            return artworkElement;
+        }
+
+        document.getElementById("add-art-button").addEventListener("click", addRandomArtwork);
     </script>
 </body>
 </html>
