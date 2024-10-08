@@ -149,6 +149,11 @@
         function addRandomArtwork() {
             const randomIndex = getRandomIndex();
             const newArtworkElement = createArtworkElement(newArtworks[randomIndex]);
+            newArtworkElement.addEventListener("click", function() {
+                newArtworkElement.style.backgroundColor = "lightblue";
+                document.getElementById("counter").textContent = "Artworks Viewed: " 
+                + (parseInt(document.getElementById("counter").textContent.split(":")[1]) + 1);
+            })
             document.querySelector(".art-grid").appendChild(newArtworkElement);
         }
 
@@ -171,7 +176,33 @@
             return artworkElement;
         }
 
+        document.getElementById("reset-button").addEventListener("click", function() {
+            document.querySelector(".art-grid").innerHTML = 
+            '<div class="art-panel"><img src="https://via.placeholder.com/200" alt="Starry Night"><p>Starry Night by Vincent van Gogh</p></div>' +
+            '<div class="art-panel"><img src="https://via.placeholder.com/200" alt="Mona Lisa"><p>Mona Lisa by Leonardo da Vinci</p></div>' +
+            '<div class="art-panel"><img src="https://via.placeholder.com/200" alt="The Persistence of Memory"><p>The Persistence of Memory by Salvador Dalí</p></div>';
+
+            document.getElementById("counter").textContent = "Artworks Viewed: 0";
+            document.querySelectorAll(".art-panel").forEach(function(element) {
+                element.addEventListener("click", function() {
+                    element.style.backgroundColor = "lightblue";
+                    document.getElementById("counter").textContent = "Artworks Viewed: " 
+                    + (parseInt(document.getElementById("counter").textContent.split(":")[1]) + 1);
+                })
+            })
+
+        });
+
+        document.querySelectorAll(".art-panel").forEach(function(element) {
+            element.addEventListener("click", function() {
+                element.style.backgroundColor = "lightblue";
+                document.getElementById("counter").textContent = "Artworks Viewed: " 
+                + (parseInt(document.getElementById("counter").textContent.split(":")[1]) + 1);
+            })
+        })
+
         document.getElementById("add-art-button").addEventListener("click", addRandomArtwork);
+
     </script>
 </body>
 </html>
