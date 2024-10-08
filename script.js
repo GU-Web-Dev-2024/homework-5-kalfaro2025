@@ -12,8 +12,6 @@ const newArtworks = [
     { title: 'Water Lilies', artist: 'Claude Monet', img: 'https://via.placeholder.com/200' },
     { title: 'Starry Night Over the Rhône', artist: 'Vincent van Gogh', img: 'https://via.placeholder.com/200' }
 ];
-// Add your JavaScript code here.
-// Later, move this to an external JavaScript file for better organization.
 function generateRandomNumber(){
     randomNumber = Math.floor(Math.random() * newArtworks.length); 
 }
